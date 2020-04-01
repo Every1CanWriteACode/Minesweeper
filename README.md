@@ -14,9 +14,11 @@ Lentos dydis:
 - laikrodžio pradinė reikšmė: 0s;
 - max laikrodžio reikšmė: 999s;
 - Paspaudus ant langelio:
+    - Jeigu tai pirmas kartas:
+        - sugeneruojame bombas;
     - atidaromas langelis;
     - patikriname ar nėra bombos:
         - jei yra: GAME OVER;
         - jei nėra: skaičiuojame kiek aplinkui yra bombų
             - į atidarytą langelį įrašome suskaičiuotą kiekį
-            - jeigu bombų nėra  (kiekis 0), tai atidarinėjame aplinkiniuis langelius.
+            - jeigu bombų nėra  (kiekis 0), tai atidarinėjame sekancčius aplinkinius langelius.

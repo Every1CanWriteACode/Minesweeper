@@ -1,47 +1,76 @@
-class House{
-    constructor(address, floors, window, doors, roof){
-        this.address = address;
-        this.floors = floors;
-        this.window = window;
-        this.doors = doors;
-        this.roof = roof;
+class Minesweeper {
+    constructor(target, width, height, bombsPercentage){
+        this.target = target;
+        this.DOM = null;
+        this.width = width;
+        this.height = height;
+        this.bombsPercentage = bombsPercentage;
+        this.bombsCount = 1; //pradziai min 1
 
-        // this.init();
+        this.init();
     }
-    // init(){
-    //     this.kiekTuriAukstu();
-    //     this.arDegaStogas();
-    // }
 
-    arDegaStogas(){
-        return console.log(`Namas adresu ${this.address} nedega`);
+    init(){
+        this.validate();
+        this.render();
     }
-    kiekTuriAukstu(){
-        return console.log(`Namas adresu ${this.address} turi ${this.floors} aukstu`);
-        
+// VALIDATE-------------START-------------------------------
+    validate(){
+         // check if valid target selector
+         const DOM = document.querySelector(this.target);
+         if (!DOM) {
+             throw 'Kritine klaida, reikia nmurodyti tinkama selektoriu, kur generuoti zaidima!';
+         } 
+         this.DOM = DOM;
+ 
+         //check for correct size
+         if ( typeof(this.width) !== 'number' ||
+              this.width < 1 ||
+              this.width % 1 > 0 ) {
+             throw 'Netinkamas plotis';
+         }
+         if ( typeof(this.height) !== 'number' ||
+              this.height < 1 ||
+              this.height % 1 > 0 ) {
+             throw 'Netinkamas aukstis';
+         }
+         if ( this.width * this.height < 2 ){
+             throw 'Bendras lentos plotas yra per mazas';
+         }
+         if ( typeof(this.bombsPercentage) !== 'number' ||
+         this.bombsPercentage <= 0 ||
+         this.bombsPercentage >= 100 ) {
+        throw 'Netinkamas bombu kiekis';
     }
-    nugriautiAuksta(){
-        if( this.floors === 0 ){
-            return console.log('Namas nugriautas iki pamatu');
-        } else {
-            this.floors--;
-        }
+ 
+         // calculate bombs count                             
+         const bombsCount = Math.floor(this.width * this.height * this.bombsPercentage / 100);
+         if (bombsCount > 0) {
+             this.bombsCount = bombsCount;
+         }
     }
-    pastatytiAuksta(){
-        this.floors++
+// VALIDATE-------------END-------------------------------
+    render(){
+        let HTML = `<div class="header">
+                            <div class="bombs">999</div>
+                            <div class="smile">:)</div>
+                            <div class="timer">000</div>
+                        </div>
+                        <div class="field">
+                            <div class="cell">c</div>
+                            <div class="cell">c</div>
+                            <div class="cell">c</div>
+                            <div class="cell">c</div>
+                            <div class="cell">c</div>
+                            <div class="cell">c</div>
+                            <div class="cell">c</div>
+                        </div>`;
+        this.DOM.classList.add('minesweeper') //pridedame viska gaubianti minesweeper diva
+        this.DOM.innerHTML = HTML;
     }
 }
 
-// House: adresas, aukstu kiekis, langu kiekis, duru kiekis ar turi stoga
-const pirmasNamas = new House(`Gedimino pr.`, 3, 30, 1, true);
-// console.log(pirmasNamas);
 
-const antrasNamas = new House(`Pakalniskes`, 1, 1, 1, true);
-// console.log(antrasNamas);
+const game = new Minesweeper('#game', 10, 10, 15);
 
-// pirmasNamas.arDegaStogas();
-// antrasNamas.arDegaStogas();
-// pirmasNamas.kiekTuriAukstu();
-// antrasNamas.kiekTuriAukstu();
-antrasNamas.nugriautiAuksta();
-antrasNamas.nugriautiAuksta();
+console.log(game);
