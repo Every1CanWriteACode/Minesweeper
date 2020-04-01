@@ -7,6 +7,8 @@ class Minesweeper {
         this.bombsPercentage = bombsPercentage;
         this.bombsCount = 1; //pradziai min 1
 
+
+
         this.init();
     }
 
@@ -51,26 +53,49 @@ class Minesweeper {
     }
 // VALIDATE-------------END-------------------------------
     render(){
+        let cellHTML = '';
+        for(let i = 0; i<this.width * this.height; i++){
+            cellHTML += `<div class="cell">${i}</div>`
+        }
+
         let HTML = `<div class="header">
-                            <div class="bombs">999</div>
+                            <div class="counter bombs">999</div>
                             <div class="smile">:)</div>
-                            <div class="timer">000</div>
+                            <div class="counter timer">000</div>
                         </div>
                         <div class="field">
-                            <div class="cell">c</div>
-                            <div class="cell">c</div>
-                            <div class="cell">c</div>
-                            <div class="cell">c</div>
-                            <div class="cell">c</div>
-                            <div class="cell">c</div>
-                            <div class="cell">c</div>
+                            ${cellHTML}
                         </div>`;
         this.DOM.classList.add('minesweeper') //pridedame viska gaubianti minesweeper diva
         this.DOM.innerHTML = HTML;
+
+        const cells = this.DOM.querySelectorAll('.cell');
+
+        console.log(this.target, this.bombsPercentage);
+        
+        for(let i = 0; i<cells.length; i++){
+            cells[i].addEventListener('click', (event) => this.cellClick(event) );
+        }
+
     }
+
+    cellClick( event ){
+        console.log( event.target.innerText, this.target, this.bombsPercentage );
+    }
+
 }
 
 
 const game = new Minesweeper('#game', 10, 10, 15);
 
 console.log(game);
+
+// //bevarde funkcija
+// function(){
+//     console.log('asasas')
+// }
+
+// //arrow funkcija
+// () => {
+//     console.log('asasas')
+// }
