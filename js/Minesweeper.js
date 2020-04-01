@@ -6,15 +6,13 @@ class Minesweeper {
         this.height = height;
         this.bombsPercentage = bombsPercentage;
         this.bombsCount = 1; //pradziai min 1
-
-
-
+  
         this.init();
     }
 
     init(){
         this.validate();
-        this.render();
+        this.render();   
     }
 // VALIDATE-------------START-------------------------------
     validate(){
@@ -87,7 +85,6 @@ class Minesweeper {
 
 
 const game = new Minesweeper('#game', 10, 10, 15);
-
 console.log(game);
 
 // //bevarde funkcija
