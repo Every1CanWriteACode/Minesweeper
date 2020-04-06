@@ -72,3 +72,8 @@ body * {
                 background-color: #bbb;
                 cursor: pointer;
             }
+            .minesweeper > .field > .cell.open {
+                background-color: #fff;
+                border-color: #ccc;
+                
+            }

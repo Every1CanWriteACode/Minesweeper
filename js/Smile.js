@@ -1,4 +1,3 @@
-  
 class Smile {
     constructor( parentHeader, parent ) {
         this.PARENT = parent;
