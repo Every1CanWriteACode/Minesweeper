@@ -5,6 +5,7 @@ body * {
     vertical-align: top;
     box-sizing: border-box;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    user-select: none;
 }
 
 .minesweeper {
@@ -74,6 +75,8 @@ body * {
             }
             .minesweeper > .field > .cell.open {
                 background-color: #fff;
-                border-color: #ccc;
-                
+                border-color: green;
+            }
+            .minesweeper > .field > .cell.bomb {
+                background-color: #f00;
             }
