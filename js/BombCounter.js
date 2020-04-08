@@ -2,6 +2,8 @@ class BombCounter {
     constructor( parentHeader, bombCount ) {
         this.parentHeader = parentHeader;
         this.bombCount = bombCount;
+        this.DOM = null;
+
 
         this.render();
     }
@@ -9,28 +11,44 @@ class BombCounter {
     render() {
         const HTML = `<div class="counter bombs">${this.convert(this.bombCount)}</div>`;
         this.parentHeader.insertAdjacentHTML('beforeend', HTML);
+        this.DOM = this.parentHeader.querySelector('.counter.bombs');
     }
 
-    convert( number ) {
-        if ( number < 100 ) {
-            return '0'+number;
+    update ( value ){
+        if( value === -1 || value === 1 ){
+            this.bombCount += value;
+            this.DOM.innerText = this.convert(this.bombCount);
         }
-        if ( number < 10 ) {
-            return '00'+number;
-        }
-        return number;
     }
 
     // convert( number ) {
-    //     let newNumber = number;
     //     if ( number < 100 ) {
-    //         newNumber = '0'+newNumber;
+    //         return '0'+number;
     //     }
     //     if ( number < 10 ) {
-    //         newNumber = '0'+newNumber;
+    //         return '00'+number;
     //     }
-    //     return newNumber;
+    //     return number;
     // }
+
+    convert( number ) {
+        let newNumber = number;
+        const positive = number >= 0 ? true:false;
+        newNumber = Math.abs(number);
+
+        if ( number < 100 ) {
+            newNumber = '0'+newNumber;
+        }
+        if ( number < 10 ) {
+            newNumber = '0'+newNumber;
+        }
+
+        if ( !positive ){
+            newNumber = '-'+newNumber;
+        }
+
+        return newNumber;
+    }
 
     // convert( number ) {
     //     const maxLength = 3;
