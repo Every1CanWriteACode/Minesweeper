@@ -22,3 +22,5 @@ Lentos dydis:
         - jei nėra: skaičiuojame kiek aplinkui yra bombų
             - į atidarytą langelį įrašome suskaičiuotą kiekį
             - jeigu bombų nėra  (kiekis 0), tai atidarinėjame sekancčius aplinkinius langelius.
+            
+Išbandyk: https://every1canwriteacode.github.io/Minesweeper/.
